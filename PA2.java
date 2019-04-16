@@ -8,13 +8,19 @@ Description:        Main file, just prints the polygon lists, based off input an
 
 Yup, your marks are up.
 
-Firstly, sorry this took a week longer than expected - that is COMPLETELY on me. The skinny on that is that I plan with a calendar - on that calendar I seem to have noted the date that I planned to start MARKING things (which is usually a week after submission closes, to allow for late subs and adverse circumstances), where I would usually note the submission date! Ergo, I quickly found myself a good WEEK late on starting these... So my apologies!
+Firstly, sorry this took a week longer than expected - that is COMPLETELY on me. The skinny on that is that I plan with a calendar -
+ on that calendar I seem to have noted the date that I planned to start MARKING things (which is usually a week after submission closes, 
+ to allow for late subs and adverse circumstances), where I would usually note the submission date! Ergo, I quickly found myself a good WEEK 
+ late on starting these... So my apologies!
 
 Now onto some group feedback.
 
-What is massively and glaringly obvious is that some of you have a) forgotten your 1st year Data Structures content and b) failed to understand how a Circular Doubly Linked List w/ Sentinel is. We shall briefly go through that here, starting with b) first.
+What is massively and glaringly obvious is that some of you have a) forgotten your 1st year Data Structures content and b) failed to
+ understand how a Circular Doubly Linked List w/ Sentinel is. We shall briefly go through that here, starting with b) first.
 
-A Circular Doubly Linked List w/Sentinel is a double-linked, node-based list structure, that leverages a sentinel to make your list methods pretty trivial. The sentinel and its prev/next relationships are set up at INSTANTIATION time, and should look something like this:
+A Circular Doubly Linked List w/Sentinel is a double-linked, node-based list structure, that leverages a sentinel to make your 
+list methods pretty trivial. The sentinel and its prev/next relationships are set up at INSTANTIATION time, and should look something 
+like this:
 
 public CDLLS ()
 {
@@ -24,7 +30,9 @@ public CDLLS ()
  sentinel.setData(null); 
 }
 
-...now what that does is remove the need for any sort of checking of edge cases (such as if the insertNode is first, last, going into an empty list, etc), so all of a sudden our prepend() method (and all simple insert methods for that matter) might look like this:
+...now what that does is remove the need for any sort of checking of edge cases (such as if the insertNode is 
+first, last, going into an empty list, etc), so all of a sudden our prepend() method (and all simple insert methods for that matter) 
+might look like this:
 
 public void prepend(Obj newThing)
 {
@@ -41,18 +49,25 @@ public void prepend(Obj newThing)
 
 Sentinels are GOOD, and are used in every linear-list-style library container that I've ever taken the time to look at the source for!
 
-The next point is your separation of DATA STRUCTURE and DATA TYPES - you all should remember SENG1120, and the basic premise that DATA STRUCTURES are containers that hold DATA TYPES. It should very clear that a Linked List requires a Node, and that Node is what will hold Polygons (which in turn hold Points); combining Node functionality into the Polygon object removes any distinction between Data Type and Data Structure.
+The next point is your separation of DATA STRUCTURE and DATA TYPES - you all should remember SENG1120, and the basic premise that 
+DATA STRUCTURES are containers that hold DATA TYPES. It should very clear that a Linked List requires a Node, and that Node is what will 
+hold Polygons (which in turn hold Points); combining Node functionality into the Polygon object removes any distinction between Data Type 
+and Data Structure.
 
-And then there is SENG1110 and SENG1120 Data Hiding - Returning a NODE from your List is never good; or making your member variables in Node or Polygon or Point public is also never good.
+And then there is SENG1110 and SENG1120 Data Hiding - Returning a NODE from your List is never good; or making your member variables in 
+Node or Polygon or Point public is also never good.
 
-Or basic Roles and Responsibilities; your Data Structure should NEVER be responsible for File Reading and Parsing the Input and creating the Data Types that will be stored within itself.
+Or basic Roles and Responsibilities; your Data Structure should NEVER be responsible for File Reading and Parsing the Input and creating 
+the Data Types that will be stored within itself.
 
-And then there are the cases where parts of the specification are just ignored - if you're told in the spec to name a File a certain name, use it! Or of you're told your project must compile with a certain command, and execute with another, do it!
+And then there are the cases where parts of the specification are just ignored - if you're told in the spec to name a File a certain name,
+ use it! Or of you're told your project must compile with a certain command, and execute with another, do it!
 
-This is by no means an exhaustive list of issues I came across multiple times, but just a few of the bigger ones so that if you have continued down this track for Assignment 2, you can reign things in and get back on track. I will try and put together a more comprehensive review in the future, but for now I have more marking to do ;)
+This is by no means an exhaustive list of issues I came across multiple times, but just a few of the bigger ones so that if you 
+have continued down this track for Assignment 2, you can reign things in and get back on track. I will try and put together 
+a more comprehensive review in the future, but for now I have more marking to do ;)
 
 
-Dan
 */
 import java.io.File;
 import java.io.FileNotFoundException;
