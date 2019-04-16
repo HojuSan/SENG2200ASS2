@@ -6,15 +6,15 @@ Student No:         c3244203
 Date:               21/03/2019
 Description:        Creates a Node 
 */
-public class Node
+public class Node<T>
 {
     //variables
     private Node next;
     private Node previous;
-    private Polygon data;
+    private T data;
 
     //constructor
-    public Node(Polygon dataValue)
+    public Node(T dataValue)
     {
         next = null;
         previous = null;
@@ -22,7 +22,7 @@ public class Node
     }
 
     //setters
-    public void setData(Polygon dataValue)
+    public void setData(T dataValue)
     {
         data = dataValue;
     }
