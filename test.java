@@ -10,8 +10,11 @@ public class test
         int c =3;
         list.prepend(a);
         list.prepend(b);
+        list.append(5);
         list.prepend(c);
-        System.out.println(list.printList());
+        list.append(5);
+        list.append(4);
+        System.out.print(list.printList());
         System.out.println("finish");
 
     }//end of Main 
