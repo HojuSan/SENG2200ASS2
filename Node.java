@@ -20,6 +20,13 @@ public class Node<T>
         previous = null;
         data = dataValue;
     }
+    //constructor
+    public Node()
+    {
+        next = null;
+        previous = null;
+        data = null;
+    }
 
     //setters
     public void setData(T dataValue)
@@ -36,7 +43,7 @@ public class Node<T>
     }
 
     //getters
-    public Polygon getData()
+    public T getData()
     {
         return data;
     }
