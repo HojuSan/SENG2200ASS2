@@ -131,7 +131,7 @@ public class MyPolygons
         int num = this.size;
 
         //create an array of nodes containing polygons
-        Polygon[] list = new Polygon[num];
+        PlanarShape[] list = new Polygon[num];
         MyPolygons sorted = new MyPolygons();
 
         //move to the head of the list
@@ -148,7 +148,7 @@ public class MyPolygons
         for (int i = 1; i < list.length; ++i) 
         { 
             //selects the first unsorted element
-            Polygon key = list[i]; 
+            PlanarShape key = list[i]; 
             int j = i - 1; 
 
             //loop shifts all the elements to right to create position

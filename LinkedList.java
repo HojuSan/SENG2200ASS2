@@ -6,12 +6,15 @@ Student No:         c3244203
 Date:               21/03/2019
 Description:        Creates a Node 
 */
-public class LinkedList //implements Iterator
+import java.util.*;
+import java.lang.*;
+
+public class LinkedList<T extends PlanarShape> implements Iterable<T>
 {
     //variables
     //the sentinel's next points to the first node on the list, and its prev points to the last node on the list. 
     //The first node's prev points to the sentinel, as does the last node's next.
-    private Node sentinel; 
+    protected Node<T> sentinel; 
     private int size;
 
     //constructor
@@ -80,5 +83,79 @@ public class LinkedList //implements Iterator
         }
 
         return list;
+    }
+
+    //@Override
+    public Iterator<T> iterator()
+    {
+        return new myLinkedListIterator();
+    }
+
+    public class myLinkedListIterator implements Iterator<T>
+    {
+        Node<T> current = sentinel;
+
+        public boolean hasNext()
+        {
+            if(current.getNext()==null)
+            {
+                return false;
+            }
+            else 
+            {
+                return true;
+            }
+        }
+
+        public void remove()
+        {
+            //sentinel node must always exist within the circular doubly linked list
+            if(current != sentinel)
+            {
+                current.getPrevious().setNext(current.getNext());
+                current.getNext().setPrevious(current.getPrevious());
+            }
+            else
+            {
+                System.out.println("can't delete sentinel node");
+            }
+        }
+
+        //directional control
+        public T next()
+        {
+            //at first iteration or just going through
+            if(current == sentinel || current.getNext()!=sentinel)
+            {
+                current = current.getNext();
+                return current.getData();
+            }
+            //end of list
+            else
+            {
+                throw new NoSuchElementException();
+            }
+//            //nothing in the linkedlist except the sentinel
+//            if(current == sentinel && sentinel.getNext() == sentinel)
+//            {
+//                throw new NoSuchElementException();
+//            }
+//            //means its looped once
+//            else if(current != sentinel && current.getNext() == sentinel)
+//            {
+//                //skip the sentinel node
+//                current = current.getNext().getNext();
+//                return current.getData();
+//            }
+//            //just go to next
+//            else
+//            {
+//                T element = current.getData();
+//                //System.out.println(current.getData().area());
+//                current = current.getNext();
+//                //System.out.println(current.getData().toString());
+//                return element;
+//            }
+        }
     }
 }

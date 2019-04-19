@@ -9,8 +9,8 @@ Description:        Creates a Node
 public class Node<T>
 {
     //variables
-    private Node next;
-    private Node previous;
+    private Node<T> next;
+    private Node<T> previous;
     private T data;
 
     //constructor
@@ -33,11 +33,11 @@ public class Node<T>
     {
         data = dataValue;
     }
-    public void setNext(Node newNext)
+    public void setNext(Node<T> newNext)
     {
         next = newNext;
     }
-    public void setPrevious(Node newPrevious)
+    public void setPrevious(Node<T> newPrevious)
     {
         previous = newPrevious;
     }
@@ -47,11 +47,11 @@ public class Node<T>
     {
         return data;
     }
-    public Node getNext()
+    public Node<T> getNext()
     {
         return next;
     }
-    public Node getPrevious()
+    public Node<T> getPrevious()
     {
         return previous;
     }

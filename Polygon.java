@@ -6,7 +6,7 @@ Student No:         c3244203
 Date:               21/03/2019
 Description:        Creates a Polygon, implements an interface as well 
 */
-public class Polygon extends PlanarShape //implements ComparePoly//<Polygon>
+public class Polygon extends PlanarShape 
 {
     //variables
     private Point[] poly;

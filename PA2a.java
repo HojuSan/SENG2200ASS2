@@ -156,6 +156,15 @@ public class PA2a
         
         //tada the actual assignment
         System.out.println(myPolyList.printList());                                 //Printing based off input order
+
+        System.out.println("iterator testing");
+        int i = 0;
+        while(myPolyList.iterator().hasNext() && i != 9)
+        {
+            System.out.println(myPolyList.iterator().next().toString());
+            i++;
+        }
+    
     }//end of Main 
 
 }//end of PA1 class
