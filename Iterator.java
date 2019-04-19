@@ -10,27 +10,25 @@ Description:        Main file, just prints the polygon lists, based off input an
 
 public class Iterator
 {
-    private Node current;
-
-    public Node getCurrent()
+    public void remove(Node node)
     {
-        return current;
+        node.getPrevious().setNext(node.getNext());
+        node.getNext().setPrevious(node.getPrevious());
     }
     //directional control
-    public void forward()
+    public Node next(Node node)
     {
-        current = current.getNext();
+        return node.getNext();
     }
-    public void backward()
+    public boolean hasNext(Node node)
     {
-        current = current.getPrevious();
+        if(node.getNext()==null)
+        {
+            return false;
+        }
+        else 
+        {
+            return true;
+        }
     }
-    public void moveToHead()
-    {
-        current = head;
-    }
-    public void moveToTail()
-    {
-        current = tail;
-    }
-}//end of PA1 class
+}

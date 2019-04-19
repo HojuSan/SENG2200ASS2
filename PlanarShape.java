@@ -7,12 +7,13 @@ Date:               05/03/2019
 Description:        Main file, just prints the polygon lists, based off input and insertionsort
 
 */
-public class PlanarShape
+
+//abstract classes exist to be extended, they can not be instantiated
+public abstract class PlanarShape implements Comparable<PlanarShape>
 {
-    public static void main (String[] args) 
-    {
+        public abstract String toString();
 
+        public abstract void area();
 
-    }//end of Main 
-
+        public abstract double originDistance();
 }//end of PA1 class

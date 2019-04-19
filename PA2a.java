@@ -83,9 +83,11 @@ public class PA2a
         String dataFile = args[0]; 
         File file = new File(dataFile);
 
-        MyPolygons myPolyList = new MyPolygons();
-        MyPolygons myPolyListOrdered = new MyPolygons();
+        LinkedList myPolyList = new LinkedList();
+        LinkedList myPolyListOrdered = new LinkedList();
 
+
+        //fix here
         try 
         {
             // Here we use the Scanner class to read file content line-by-line.
@@ -135,10 +137,11 @@ public class PA2a
                         //adds first element to the last
                         //add triggers the area/distance calculations
                         poly.addPoint(pList[0]);
-                        poly.calArea();
-                        poly.calDistance();
+                        poly.area();
+                        poly.originDistance();
                         myPolyList.append(poly);
-                        myPolyListOrdered.append(poly);
+                        //PlanarShape planarPoly = poly;
+                        //myPolyList.append(planarPoly);
 
                     }
                 }                
@@ -153,9 +156,6 @@ public class PA2a
         
         //tada the actual assignment
         System.out.println(myPolyList.printList());                                 //Printing based off input order
-
-        System.out.println(myPolyListOrdered.insertionSort().printList());          //Printing in ascending order from insertionSort
-
     }//end of Main 
 
 }//end of PA1 class

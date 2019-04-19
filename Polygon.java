@@ -6,7 +6,7 @@ Student No:         c3244203
 Date:               21/03/2019
 Description:        Creates a Polygon, implements an interface as well 
 */
-public class Polygon implements ComparePoly
+public class Polygon extends PlanarShape implements Compareable<Polygon>
 {
     //variables
     private Point[] poly;
@@ -49,7 +49,7 @@ public class Polygon implements ComparePoly
     }
 
     //Inputs points into Polygon area calculation, saves value into private variable area
-    public void calArea()
+    public void area()
     {
         //Start of the formula
         for(int i = 0; i < sides-1; i++)
@@ -68,7 +68,7 @@ public class Polygon implements ComparePoly
     }
 
     //calculates the closest point to the origin, returns the distance
-    public double calDistance()
+    public double originDistance()
     {
         double closest = poly[0].getD();
 
@@ -85,7 +85,8 @@ public class Polygon implements ComparePoly
     }
 
     //bigger or the same return true, if smaller return false 
-    public boolean compare(Polygon poly)
+    @Override
+    public boolean compareTo(Polygon poly)
     {
         //determine ratio between the area of two polygons
         double ratio = this.area / poly.getArea();
