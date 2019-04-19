@@ -137,8 +137,8 @@ public class PA2a
                         //adds first element to the last
                         //add triggers the area/distance calculations
                         poly.addPoint(pList[0]);
-                        poly.area();
-                        poly.originDistance();
+                        poly.calArea();
+                        poly.calOriginDistance();
                         myPolyList.append(poly);
                         //PlanarShape planarPoly = poly;
                         //myPolyList.append(planarPoly);

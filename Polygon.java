@@ -6,7 +6,7 @@ Student No:         c3244203
 Date:               21/03/2019
 Description:        Creates a Polygon, implements an interface as well 
 */
-public class Polygon extends PlanarShape implements Compareable<Polygon>
+public class Polygon extends PlanarShape //implements ComparePoly//<Polygon>
 {
     //variables
     private Point[] poly;
@@ -49,7 +49,12 @@ public class Polygon extends PlanarShape implements Compareable<Polygon>
     }
 
     //Inputs points into Polygon area calculation, saves value into private variable area
-    public void area()
+    public double area()
+    {
+        return area;
+    }
+
+    public void calArea()
     {
         //Start of the formula
         for(int i = 0; i < sides-1; i++)
@@ -68,7 +73,7 @@ public class Polygon extends PlanarShape implements Compareable<Polygon>
     }
 
     //calculates the closest point to the origin, returns the distance
-    public double originDistance()
+    public void calOriginDistance()
     {
         double closest = poly[0].getD();
 
@@ -80,50 +85,11 @@ public class Polygon extends PlanarShape implements Compareable<Polygon>
             }
         }
         this.distance = closest;
-
-        return closest;
     }
 
-    //bigger or the same return true, if smaller return false 
-    @Override
-    public boolean compareTo(Polygon poly)
+    public double originDistance()
     {
-        //determine ratio between the area of two polygons
-        double ratio = this.area / poly.getArea();
-
-        //if no area default same
-        if (this.area == 0 && poly.getArea() == 0)
-        {
-            ratio = 1;
-        }
-
-        //area is states as the same
-        if(ratio <= 1.05 && ratio >= 0.95)
-        {
-            //if vertex distance is smaller then return true
-            if(this.getDistance() > poly.getDistance())
-            {
-                return true;
-            }
-            //if the same distance return false
-            else if(this.getDistance() == poly.getDistance())
-            {
-                return false;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        //if the area is bigger return true
-        if(this.area > poly.getArea())
-        {
-            return true;
-        }
-        
-        //area is smaller
-        return false;
+        return distance;
     }
 
     //prints out polygon information according to specs

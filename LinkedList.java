@@ -34,7 +34,7 @@ public class LinkedList //implements Iterator
     }
 
     //insertion before the first node
-    public void prepend(int data)
+    public void prepend(PlanarShape data)
     {
         Node temp = new Node(data);
 
@@ -48,7 +48,7 @@ public class LinkedList //implements Iterator
     }
 
     //insertion before the sentinel node
-    public void append(int data)
+    public void append(PlanarShape data)
     {
         Node temp = new Node(data);
 
@@ -75,7 +75,7 @@ public class LinkedList //implements Iterator
         for(int i = 0; i < size; i++)
         {
             list += current.getData().toString()+"\n";
-            System.out.println(current.getData());
+            //System.out.println(current.getData());
             current = current.getNext();
         }
 
