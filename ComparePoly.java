@@ -6,8 +6,8 @@ Student No:         c3244203
 Date:               21/03/2019
 Description:        interface for Polygon methods, can be used for squares and rectangle functionality later on
 */
-public interface ComparePoly<T>
+public interface ComparePoly<T> 
 {
-    //methods
+    // methods
     public boolean compare(T tObject);
 }
