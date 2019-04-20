@@ -1,3 +1,4 @@
+
 /*
 Title:              Assignment1 Polygon.java
 Course:             SENG2200
@@ -9,36 +10,33 @@ Description:        Creates a Node
 import java.util.*;
 import java.lang.*;
 
-public class LinkedList<T extends PlanarShape> implements Iterable<T>
-{
-    //variables
-    //the sentinel's next points to the first node on the list, and its prev points to the last node on the list. 
-    //The first node's prev points to the sentinel, as does the last node's next.
-    protected Node<T> sentinel; 
+public class LinkedList<T extends PlanarShape> implements Iterable<T> {
+    // variables
+    // the sentinel's next points to the first node on the list, and its prev points
+    // to the last node on the list.
+    // The first node's prev points to the sent`inel, as does the last node's next.
+    protected Node<T> sentinel;
     private int size;
 
-    //constructor
-    public LinkedList()
-    {
+    // constructor
+    public LinkedList() {
         this.sentinel = new Node(null);
         this.sentinel.setNext(sentinel);
         this.sentinel.setPrevious(sentinel);
         size = 0;
     }
 
-    //getters
-    public boolean isEmpty()
-    {
+    // getters
+    public boolean isEmpty() {
         return size == 0;
     }
-    public int getSize()
-    {
+
+    public int getSize() {
         return size;
     }
 
-    //insertion before the first node
-    public void prepend(PlanarShape data)
-    {
+    // insertion before the first node
+    public void prepend(PlanarShape data) {
         Node temp = new Node(data);
 
         temp.setNext(sentinel.getNext());
@@ -50,9 +48,8 @@ public class LinkedList<T extends PlanarShape> implements Iterable<T>
         size++;
     }
 
-    //insertion before the sentinel node
-    public void append(PlanarShape data)
-    {
+    // insertion before the sentinel node
+    public void append(PlanarShape data) {
         Node temp = new Node(data);
 
         temp.setNext(sentinel);
@@ -64,98 +61,73 @@ public class LinkedList<T extends PlanarShape> implements Iterable<T>
         size++;
     }
 
-    public Node returnHead()
-    {
+    public Node returnHead() {
         return sentinel.getNext();
     }
 
-    //print
-    public String printList()
-    {
+    // print
+    public String printList() {
         String list = "";
         Node current = sentinel.getNext();
 
-        for(int i = 0; i < size; i++)
-        {
-            list += current.getData().toString()+"\n";
-            //System.out.println(current.getData());
+        for (int i = 0; i < size; i++) {
+            list += current.getData().toString() + "\n";
+            // System.out.println(current.getData());
             current = current.getNext();
         }
 
         return list;
     }
 
-    //@Override
-    public Iterator<T> iterator()
-    {
+    public String pl(LinkedList list) {
+        String listPrint = "";
+        Iterator<T> it = list.iterator();
+        while (it.hasNext()) {
+            listPrint += it.next().toString() + "\n";
+        }
+        return listPrint;
+    }
+
+    // @Override
+    public Iterator<T> iterator() {
         return new myLinkedListIterator();
     }
 
-    public class myLinkedListIterator implements Iterator<T>
-    {
+    public class myLinkedListIterator implements Iterator<T> {
         Node<T> current = sentinel;
 
-        public boolean hasNext()
-        {
-            if(current.getNext()==null)
-            {
+        public boolean hasNext() {
+            if (current.getNext() == sentinel) {
+                // System.out.println("returned false");
                 return false;
-            }
-            else 
-            {
+            } else {
+                // System.out.println("returned true");
                 return true;
             }
         }
 
-        public void remove()
-        {
-            //sentinel node must always exist within the circular doubly linked list
-            if(current != sentinel)
-            {
+        public void remove() {
+            // sentinel node must always exist within the circular doubly linked list
+            if (current != sentinel) {
                 current.getPrevious().setNext(current.getNext());
                 current.getNext().setPrevious(current.getPrevious());
-            }
-            else
-            {
+            } else {
                 System.out.println("can't delete sentinel node");
             }
         }
 
-        //directional control
-        public T next()
-        {
-            //at first iteration or just going through
-            if(current == sentinel || current.getNext()!=sentinel)
-            {
+        // directional control
+        public T next() {
+            // System.out.println("here");
+            // at first iteration or just going through
+            if (current == sentinel || current.getNext() != sentinel) {
                 current = current.getNext();
                 return current.getData();
             }
-            //end of list
-            else
-            {
+            // end of list
+            else {
                 throw new NoSuchElementException();
             }
-//            //nothing in the linkedlist except the sentinel
-//            if(current == sentinel && sentinel.getNext() == sentinel)
-//            {
-//                throw new NoSuchElementException();
-//            }
-//            //means its looped once
-//            else if(current != sentinel && current.getNext() == sentinel)
-//            {
-//                //skip the sentinel node
-//                current = current.getNext().getNext();
-//                return current.getData();
-//            }
-//            //just go to next
-//            else
-//            {
-//                T element = current.getData();
-//                //System.out.println(current.getData().area());
-//                current = current.getNext();
-//                //System.out.println(current.getData().toString());
-//                return element;
-//            }
         }
     }
 }
