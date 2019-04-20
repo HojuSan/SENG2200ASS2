@@ -22,7 +22,7 @@ public class PA2a
         File file = new File(dataFile);
 
         LinkedList myPolyList = new LinkedList();
-        LinkedList myPolyListOrdered = new LinkedList();
+        SortedList myPolyListOrdered = new SortedList();
 
         try 
         {
@@ -47,15 +47,24 @@ public class PA2a
 
         // tada the actual assignment
         System.out.println(myPolyList.printList());
-//
-//        System.out.println("iterator testing");
-//        Iterator it = myPolyList.iterator();
-//
-//        while (it.hasNext()) 
-//        {
-//            String obj = it.next().toString();
-//            System.out.println(obj);
-//        }
+
+        System.out.println("iterator testing");
+
+        Iterator<PlanarShape> it = myPolyList.iterator();
+
+        int i = 0;
+
+        while (it.hasNext()) 
+        {
+
+            System.out.println("adding into sorted list for the "+i+" time\n");
+            myPolyListOrdered.insertInOrder(it.next());
+
+            i++;
+        }
+
+        System.out.println("sorted list\n");
+        System.out.println(myPolyListOrdered.printList());
 
     }// end of Main
 

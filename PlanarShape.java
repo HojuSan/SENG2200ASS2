@@ -32,14 +32,18 @@ public abstract class PlanarShape
         // area is states as the same
         if (ratio <= 1.05 && ratio >= 0.95) 
         {
-            // if vertex distance is smaller then return true
-            if (this.originDistance() > poly.originDistance()) {
+            // if the distance to origin is shorter, it is technically bigger
+            if (this.originDistance() < poly.originDistance()) 
+            {
                 return true;
             }
-            // if the same distance return false
-            else if (this.originDistance() == poly.originDistance()) {
+            // if bigger then it is smaller
+            else if (this.originDistance() > poly.originDistance()) 
+            {
                 return false;
-            } else {
+            } 
+            else//for the cases that the distance is the same
+            {
                 return false;
             }
         }
@@ -49,8 +53,11 @@ public abstract class PlanarShape
         {
             return true;
         }
+        else
+        {
+            // area is smaller
+            return false;
 
-        // area is smaller
-        return false;
+        }
     }
 }// end of PA1 class
