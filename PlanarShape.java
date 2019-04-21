@@ -30,8 +30,9 @@ public abstract class PlanarShape
         }
 
         // area is states as the same
-        if (ratio <= 1.05 && ratio >= 0.95) 
+        if (ratio <= 1.005 && ratio >= 0.995) 
         {
+            System.out.println("entered orgin distance comparison~~~~~~~~~~");
             // if the distance to origin is shorter, it is technically bigger
             if (this.originDistance() > poly.originDistance()) 
             {

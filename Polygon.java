@@ -33,11 +33,12 @@ public class Polygon extends PlanarShape
     {
         return print;
     }
-    public double getArea()
+    //Inputs points into Polygon area calculation, saves value into private variable area
+    public double area()
     {
         return area;
     }
-    public double getDistance()
+    public double originDistance()
     {
         return distance;
     }
@@ -47,12 +48,6 @@ public class Polygon extends PlanarShape
     {
         poly[size] = pon;
         size++;
-    }
-
-    //Inputs points into Polygon area calculation, saves value into private variable area
-    public double area()
-    {
-        return area;
     }
 
     public void calArea()
@@ -89,16 +84,11 @@ public class Polygon extends PlanarShape
         this.distance = closest;
     }
 
-    public double originDistance()
-    {
-        return distance;
-    }
-
     //prints out polygon information according to specs
     @Override
     public String toString()
     {
-        String temp = "[";
+        String temp = "POLY=[";
         String areaVal = String.format("%5.2f", area);
 
 

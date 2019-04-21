@@ -6,6 +6,7 @@ Student No:         c3244203
 Date:               21/03/2019
 Description:        Creates a point
 */
+import java.lang.Math;
 public class Point
 {
     //variables
@@ -40,6 +41,8 @@ public class Point
 
         //calculations
         dis = Math.sqrt((x*x) + (y*y));
+
+        dis = Math.abs(dis);
 
         return dis;
     }

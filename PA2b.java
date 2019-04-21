@@ -1,3 +1,4 @@
+
 /*
 Title:              Assignment1 PA2.java
 Course:             SENG2200
@@ -8,20 +9,20 @@ Description:        Main file, just prints the polygon lists, based off input an
 */
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.lang.String;
 import java.io.IOException;
-public class PA2b
-{
-    public static void main (String[] args) throws IOException
-    {
+import java.util.*;
+import java.lang.*;
 
-        //variables
-        String dataFile = args[0]; 
+public class PA2b 
+{
+    public static void main(String[] args) throws IOException 
+    {
+        // variables
+        String dataFile = args[0];
         File file = new File(dataFile);
 
-        MyPolygons myPolyList = new MyPolygons();
-        MyPolygons myPolyListOrdered = new MyPolygons();
+        LinkedList myPolyList = new LinkedList();
+        SortedList myPolyListOrdered = new SortedList();
 
         try 
         {
@@ -30,69 +31,104 @@ public class PA2b
 
             while (scanner.hasNextLine()) 
             {
+                //saves the shape data into line
                 String line = scanner.nextLine();
 
-                // Splitting the line with spaces
-                Scanner lineScanner = new Scanner(line);
-
-                lineScanner.useDelimiter(" ");
-
-                //testing purposes
-                while (lineScanner.hasNext()) 
-                {
-                    String part = lineScanner.next();
-
-                    if(part.equals("P"))
-                    {
-
-                        //num after P/ verticies
-                        String verticies = lineScanner.next();
-                        int pNum = Integer.parseInt(verticies);
-                        int cNum = 0;
-
-                        //creates a polygon of n+1 verticies
-                        Polygon poly = new Polygon(pNum+1);
-
-                        //creates a list of points to insert into the polygon
-                        Point[] pList = new Point[pNum+1];
-
-                        //loops till the end of the line
-                        while(lineScanner.hasNext())
-                        {
-                            //generates values
-                            String xValue = lineScanner.next();
-                            String yValue = lineScanner.next();
-
-                            //saves x point then y point respectively
-                            pList[cNum] = new Point(Double.parseDouble(xValue),Double.parseDouble(yValue));
-                            poly.addPoint(pList[cNum]);
-                            cNum++;
-                        }
-
-                        //adds first element to the last
-                        //add triggers the area/distance calculations
-                        poly.addPoint(pList[0]);
-                        poly.calArea();
-                        poly.calDistance();
-                        myPolyList.append(poly);
-                        myPolyListOrdered.append(poly);
-
-                    }
-                }                
+                //call shapeFactory
+                shapeFactory(myPolyList, line);                
             }
-        }//end of try 
+        } // end of try
         catch (FileNotFoundException e) 
         {
             e.printStackTrace();
         }
 
         System.out.println();
-        
-        //tada the actual assignment
-        System.out.println(myPolyList.printList());                                 //Printing based off input order
 
-        System.out.println(myPolyListOrdered.insertionSort().printList());          //Printing in ascending order from insertionSort
+        //sorted by input
+        System.out.println("sorted by input\n");
+        System.out.println(myPolyList.printList(myPolyList));
 
-    }//end of Main 
+        Iterator<PlanarShape> it = myPolyList.iterator();
 
-}//end of PA1 class
+        while (it.hasNext()) 
+        {
+            myPolyListOrdered.insertInOrder(it.next());
+
+        }
+
+        //sorted list
+        System.out.println("sorted list\n");
+        System.out.println(myPolyListOrdered.printList(myPolyListOrdered));
+
+    }// end of Main
+
+    public static void shapeFactory(LinkedList list, String shapeData)
+    {
+        String[] details = shapeData.split(" ");
+        String id_char = details[0];
+        System.out.println("char is "+id_char);
+
+        switch(id_char)
+        {
+            case "P":
+                // num after P/ verticies
+                String verticies = details[1];
+                int pNum = Integer.parseInt(verticies);
+                int cNum = 0;
+
+                // creates a polygon of n+1 verticies
+                Polygon poly = new Polygon(pNum + 1);
+
+                // creates a list of points to insert into the polygon
+                Point[] pList = new Point[pNum + 1];
+
+                //x,y values start at array num 2
+                for(int i = 2; i < details.length; i+=2) 
+                {
+                    // generates values
+                    //System.out.println("array length is "+ details.length);
+                    //System.out.println("i is at "+i+" "+(i+1));
+                    String xValue = details[i];
+                    String yValue = details[i+1];
+
+                    // saves x point then y point respectively
+                    pList[cNum] = new Point(Double.parseDouble(xValue), Double.parseDouble(yValue));
+                    poly.addPoint(pList[cNum]);
+                    cNum++;
+                }
+
+                // adds first element to the last
+                // add triggers the area/distance calculations
+                poly.addPoint(pList[0]);
+                poly.calArea();
+                poly.calOriginDistance();
+                PlanarShape shape = poly;
+                list.append(shape);
+
+            break;
+
+            case "C":
+                String xValue = details[1];
+                String yValue = details[2];
+                double radius = Double.parseDouble(details[3]);
+
+                Point centre = new Point(Double.parseDouble(xValue), Double.parseDouble(yValue));
+                Circle circle = new Circle(centre,radius);
+                PlanarShape planarCircle = circle;
+                list.append(planarCircle);
+            break;
+//
+//            case "S":
+//
+//            break;
+
+            default:
+                System.out.println("Woop");
+
+            break;
+
+        }
+    }
+
+}// end of PA1 class

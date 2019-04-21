@@ -45,24 +45,19 @@ public class PA2a
 
         System.out.println();
 
-        // tada the actual assignment
-        //System.out.println(myPolyList.printList());
-
-        System.out.println("iterator testing");
+        //sorted by input
+        System.out.println("sorted by input\n");
+        System.out.println(myPolyList.printList(myPolyList));
 
         Iterator<PlanarShape> it = myPolyList.iterator();
 
-        int i = 0;
-
         while (it.hasNext()) 
         {
-
-            System.out.println("adding into sorted list for the "+i+" time\n");
             myPolyListOrdered.insertInOrder(it.next());
 
-            i++;
         }
 
+        //sorted list
         System.out.println("sorted list\n");
         System.out.println(myPolyListOrdered.printList(myPolyListOrdered));
 
