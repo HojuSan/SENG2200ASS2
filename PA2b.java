@@ -118,10 +118,21 @@ public class PA2b
                 PlanarShape planarCircle = circle;
                 list.append(planarCircle);
             break;
-//
-//            case "S":
-//
-//            break;
+
+            case "S":
+                double xValue1 = Double.parseDouble(details[1]);
+                double yValue1 = Double.parseDouble(details[2]);
+                double xValue2 = Double.parseDouble(details[3]);
+                double yValue2 = Double.parseDouble(details[4]);
+
+                Point sCentre = new Point(xValue1,yValue1);
+                Point pVector = new Point(xValue2,yValue2);
+                double sRadius = Math.sqrt(Math.pow((xValue2-xValue1),2) + Math.pow((yValue2-yValue1),2));
+
+                SemiCircle semiCircle = new SemiCircle(sCentre, pVector, sRadius);
+                PlanarShape planarSM = semiCircle;
+                list.append(planarSM);
+            break;
 
             default:
                 System.out.println("Woop");

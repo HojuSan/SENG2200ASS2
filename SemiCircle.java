@@ -8,20 +8,21 @@ Description:        Creates a Polygon, implements an interface as well
 */
 import java.lang.Math;
 
-public class Circle extends PlanarShape 
+public class SemiCircle extends PlanarShape 
 {
     //variables
     private Point centre;
+    private Point pVector;
     private double radius;
-    private int sides;
     private double area;
     private double distance;
     private String print;
 
     //constructor
-    public Circle(Point pon, double r)
+    public SemiCircle(Point c, Point pV, double r)
     {
-        this.centre = pon;
+        this.centre = c;
+        this.pVector = pV;
         this.radius = r;
         this.distance = centre.distance();
         calArea();
@@ -42,7 +43,7 @@ public class Circle extends PlanarShape
  
      public void calArea()
      {
-        area = Math.PI * Math.pow(radius, 2);
+        area = (Math.PI * Math.pow(radius, 2))/2;
      } 
 
      public double originDistance()
@@ -56,8 +57,8 @@ public class Circle extends PlanarShape
      {
          String areaVal = String.format("%5.2f", area);
          String radiusVal = String.format("%5.2f", radius);
-         String temp = "CIRC=[";
-         temp += centre.toString() + " " + radiusVal+" ]: "+ areaVal;
+         String temp = "SEMI=[";
+         temp += centre.toString() + " " + pVector.toString() + " " + radiusVal +" ]: "+ areaVal;
 
          this.print = temp;
          return temp;
