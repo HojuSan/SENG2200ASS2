@@ -91,7 +91,8 @@ public class LinkedList<T extends PlanarShape> implements Iterable<T>
     }
 
     //iterator function
-    public Iterator<T> iterator() {
+    public Iterator<T> iterator() 
+    {
         return new myLinkedListIterator();
     }
 

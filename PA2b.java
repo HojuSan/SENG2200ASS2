@@ -54,13 +54,16 @@ public class PA2b
         System.out.println();
         System.out.println();
 
+        //didn't want to do it but no matter how i cast Iterator or change types
+        //unchecked won't go away, so i'm just suppressing it, i didn't want to though
+        @SuppressWarnings("unchecked")
         //iterator, adds a planar shape one by one
-        Iterator<PlanarShape> it = myPolyList.iterator();
+        Iterator<PlanarShape> it = (Iterator<PlanarShape>) myPolyList.iterator();
 
         while (it.hasNext()) 
         {
-            myPolyListOrdered.insertInOrder(it.next());
-
+            PlanarShape temp = it.next();
+            myPolyListOrdered.insertInOrder(temp);
         }
 
         //sorted list
