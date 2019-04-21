@@ -1,10 +1,10 @@
 /*
-Title:              Assignment1 Polygon.java
+Title:              Assignment2 SemiCircle.java
 Course:             SENG2200
 Author:             Juyong Kim
 Student No:         c3244203
-Date:               21/03/2019
-Description:        Creates a Polygon, implements an interface as well 
+Date:               21/04/2019
+Description:        Creates a SemiCircle extends PlanarShape
 */
 import java.lang.Math;
 
@@ -25,6 +25,7 @@ public class SemiCircle extends PlanarShape
         this.pVector = pV;
         this.radius = r;
         this.distance = centre.distance();
+        //calculates area then saves it
         calArea();
         this.area = area();
         this.print = "";
@@ -35,32 +36,33 @@ public class SemiCircle extends PlanarShape
      {
          return print;
      }
-     //Inputs points into Polygon area calculation, saves value into private variable area
      public double area()
      {
          return area;
      }
- 
-     public void calArea()
-     {
-        area = (Math.PI * Math.pow(radius, 2))/2;
-     } 
-
      public double originDistance()
      {
          return distance;
-     }
- 
-     //prints out polygon information according to specs
+     } 
+
+     //calculates semi circle
+     public void calArea()
+     {
+        //make a circle then half it
+        area = (Math.PI * Math.pow(radius, 2))/2;
+     } 
+
+     //prints out semiCircle information according to specs
      @Override
      public String toString()
      {
          String areaVal = String.format("%5.2f", area);
          String radiusVal = String.format("%5.2f", radius);
+
          String temp = "SEMI=[";
          temp += centre.toString() + " " + pVector.toString() + " " + radiusVal +" ]: "+ areaVal;
 
          this.print = temp;
          return temp;
      }
-}
+}//end of SemiCircle class

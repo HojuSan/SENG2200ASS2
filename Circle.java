@@ -1,10 +1,10 @@
 /*
-Title:              Assignment1 Polygon.java
+Title:              Assignment2 Circle.java
 Course:             SENG2200
 Author:             Juyong Kim
 Student No:         c3244203
-Date:               21/03/2019
-Description:        Creates a Polygon, implements an interface as well 
+Date:               21/04/2019
+Description:        Creates a Circle, extends PlanarShape
 */
 import java.lang.Math;
 
@@ -13,7 +13,6 @@ public class Circle extends PlanarShape
     //variables
     private Point centre;
     private double radius;
-    private int sides;
     private double area;
     private double distance;
     private String print;
@@ -34,22 +33,21 @@ public class Circle extends PlanarShape
      {
          return print;
      }
-     //Inputs points into Polygon area calculation, saves value into private variable area
      public double area()
      {
          return area;
      }
- 
-     public void calArea()
-     {
-        area = Math.PI * Math.pow(radius, 2);
-     } 
-
      public double originDistance()
      {
          return distance;
      }
  
+     //calculates the area of a circle
+     public void calArea()
+     {
+        area = Math.PI * Math.pow(radius, 2);
+     } 
+
      //prints out polygon information according to specs
      @Override
      public String toString()

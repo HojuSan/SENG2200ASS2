@@ -1,11 +1,11 @@
 
 /*
-Title:              Assignment1 PA2.java
+Title:              Assignment2 PA2a.java
 Course:             SENG2200
 Author:             Juyong Kim
 Student No:         c3244203
-Date:               05/03/2019
-Description:        Main file, just prints the polygon lists, based off input and insertionsort
+Date:               21/04/2019
+Description:        Main file, prints polygons, based off input and sorted by area/originDistance
 */
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -46,9 +46,14 @@ public class PA2a
         System.out.println();
 
         //sorted by input
-        System.out.println("sorted by input\n");
+        System.out.println("SORTED BY INPUT\n");
         System.out.println(myPolyList.printList(myPolyList));
 
+        //make it look clean
+        System.out.println();
+        System.out.println();
+
+        //iterator, adds a planar shape one by one
         Iterator<PlanarShape> it = myPolyList.iterator();
 
         while (it.hasNext()) 
@@ -58,7 +63,7 @@ public class PA2a
         }
 
         //sorted list
-        System.out.println("sorted list\n");
+        System.out.println("SORTED BY AREA/ORIGIN DISTANCE\n");
         System.out.println(myPolyListOrdered.printList(myPolyListOrdered));
 
     }// end of Main
@@ -68,6 +73,8 @@ public class PA2a
         String[] details = shapeData.split(" ");
         String id_char = details[0];
 
+        //switch statement that decides what shape it is based off
+        //the initial character of the string
         switch(id_char)
         {
             case "P":
@@ -102,6 +109,7 @@ public class PA2a
                 poly.addPoint(pList[0]);
                 poly.calArea();
                 poly.calOriginDistance();
+                //creates a planar shape and the prepends it
                 PlanarShape shape = poly;
                 list.append(shape);
 
@@ -116,11 +124,13 @@ public class PA2a
 //            break;
 
             default:
-                System.out.println("Woop");
+
+                //default print out for errors
+                System.out.println("Invalid shape Input");
 
             break;
 
         }
     }
 
-}// end of PA1 class
+}// end of PA2a class

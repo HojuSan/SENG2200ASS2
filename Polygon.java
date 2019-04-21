@@ -1,10 +1,10 @@
 /*
-Title:              Assignment1 Polygon.java
+Title:              Assignment2 Polygon.java
 Course:             SENG2200
 Author:             Juyong Kim
 Student No:         c3244203
-Date:               21/03/2019
-Description:        Creates a Polygon, implements an interface as well 
+Date:               21/04/2019
+Description:        Creates a Polygon that is a Planarshape
 */
 import java.lang.Math;
 public class Polygon extends PlanarShape 
@@ -33,7 +33,6 @@ public class Polygon extends PlanarShape
     {
         return print;
     }
-    //Inputs points into Polygon area calculation, saves value into private variable area
     public double area()
     {
         return area;
@@ -50,6 +49,7 @@ public class Polygon extends PlanarShape
         size++;
     }
 
+    //calculates the polygon area to the assignment specs
     public void calArea()
     {
         //Start of the formula
@@ -58,15 +58,12 @@ public class Polygon extends PlanarShape
             area += (poly[i].getX()*poly[i+1].getY())-(poly[i].getY()*poly[i+1].getX());
         }
 
+        //absoloute value of the area
         area = Math.abs(area);
+
         //half the total calculation
         area = area/2;
 
-        //if area is negative times by -1
-        if(area <= 0)
-        {
-            area = area*-1;
-        }
     }
 
     //calculates the closest point to the origin, returns the distance
@@ -74,6 +71,7 @@ public class Polygon extends PlanarShape
     {
         double closest = poly[0].getD();
 
+        //cycles through all the points
         for(int i = 1; i < sides; i++)
         {
             if(closest > poly[i].getD())
@@ -81,6 +79,7 @@ public class Polygon extends PlanarShape
                 closest = poly[i].getD();
             }
         }
+        //saves the closest points distance
         this.distance = closest;
     }
 
@@ -91,7 +90,7 @@ public class Polygon extends PlanarShape
         String temp = "POLY=[";
         String areaVal = String.format("%5.2f", area);
 
-
+        //adds each point
         for(int i = 0; i < sides; i++)
         {
             temp += poly[i].toString();
@@ -101,4 +100,4 @@ public class Polygon extends PlanarShape
         this.print = temp;
         return temp;
     }
-}
+}//end of Polygon Class

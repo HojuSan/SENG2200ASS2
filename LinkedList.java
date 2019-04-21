@@ -1,25 +1,26 @@
 
 /*
-Title:              Assignment1 Polygon.java
+Title:              Assignment2 LinkedList.java
 Course:             SENG2200
 Author:             Juyong Kim
 Student No:         c3244203
-Date:               21/03/2019
-Description:        Creates a Node 
+Date:               21/04/2019
+Description:        Creates a Circular Doubly Linkedlist that only takes in PlanarShapes, Also uses a sentinel now 
 */
 import java.util.*;
 
-public class LinkedList<T extends PlanarShape> implements Iterable<T> {
+public class LinkedList<T extends PlanarShape> implements Iterable<T> 
+{
     // variables
     // the sentinel's next points to the first node on the list, and its prev points
     // to the last node on the list.
-    // The first node's prev points to the sent`inel, as does the last node's next.
-    //protected variables extened classes can access
+    // The first node's prev points to the sentinel, as does the last node's next.
     protected Node<T> sentinel;
-    protected int size;
+    protected int size;             //protected variables extened classes can access
 
     // constructor
-    public LinkedList() {
+    public LinkedList() 
+    {
         this.sentinel = new Node(null);
         this.sentinel.setNext(sentinel);
         this.sentinel.setPrevious(sentinel);
@@ -27,16 +28,18 @@ public class LinkedList<T extends PlanarShape> implements Iterable<T> {
     }
 
     // getters
-    public boolean isEmpty() {
+    public boolean isEmpty() 
+    {
         return size == 0;
     }
-
-    public int getSize() {
+    public int getSize() 
+    {
         return size;
     }
 
     // insertion before the first node
-    public void prepend(PlanarShape data) {
+    public void prepend(PlanarShape data) 
+    {
         Node<T> temp = new Node(data);
 
         temp.setNext(sentinel.getNext());
@@ -49,7 +52,8 @@ public class LinkedList<T extends PlanarShape> implements Iterable<T> {
     }
 
     // insertion before the sentinel node
-    public void append(PlanarShape data) {
+    public void append(PlanarShape data) 
+    {
         Node<T> temp = new Node(data);
 
         temp.setNext(sentinel);
@@ -61,26 +65,22 @@ public class LinkedList<T extends PlanarShape> implements Iterable<T> {
         size++;
     }
 
-    public Node<T> getHead() 
-    {
-        return sentinel.getNext();
-    }
+//    // print
+//    public String printList() 
+//    {
+//        String list = "";
+//        Node<T> current = sentinel.getNext();
+//
+//        for (int i = 0; i < size; i++) {
+//            list += current.getData().toString() + "\n";
+//             System.out.println(current.getData());
+//            current = current.getNext();
+//        }
+//
+//        return list;
+//    }
 
-    // print
-    public String printList() 
-    {
-        String list = "";
-        Node<T> current = sentinel.getNext();
-
-        for (int i = 0; i < size; i++) {
-            list += current.getData().toString() + "\n";
-             System.out.println(current.getData());
-            current = current.getNext();
-        }
-
-        return list;
-    }
-
+    //print function that uses the iterator
     public String printList(LinkedList list) {
         String listPrint = "";
         Iterator<T> it = list.iterator();
@@ -90,15 +90,17 @@ public class LinkedList<T extends PlanarShape> implements Iterable<T> {
         return listPrint;
     }
 
-    // @Override
+    //iterator function
     public Iterator<T> iterator() {
         return new myLinkedListIterator();
     }
 
+    //nested Iterator class
     public class myLinkedListIterator implements Iterator<T> 
     {
         Node<T> current = sentinel;
 
+        //standard has next returns true or false
         public boolean hasNext() 
         {
             if (current.getNext() == sentinel || current.getNext() == null) 
@@ -112,6 +114,7 @@ public class LinkedList<T extends PlanarShape> implements Iterable<T> {
             }
         }
 
+        //removes a node at its current location
         public void remove() 
         {
             // sentinel node must always exist within the circular doubly linked list
@@ -119,24 +122,27 @@ public class LinkedList<T extends PlanarShape> implements Iterable<T> {
             {
                 current.getPrevious().setNext(current.getNext());
                 current.getNext().setPrevious(current.getPrevious());
-            } else {
+            } 
+            else 
+            {
                 System.out.println("can't delete sentinel node");
             }
         }
 
-        // directional control
+        // directional control, moves next
         public T next() 
         {
-            // System.out.println("here");
             // at first iteration or just going through
-            if (current == sentinel || current.getNext() != sentinel) {
+            if (current == sentinel || current.getNext() != sentinel) 
+            {
                 current = current.getNext();
                 return current.getData();
             }
-            // end of list
-            else {
+            // end of list, shouldnt get here, but in case of bad implementation
+            else 
+            {
                 throw new NoSuchElementException();
             }
         }
     }
-}
+}//end of class

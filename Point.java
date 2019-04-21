@@ -1,11 +1,12 @@
 /*
-Title:              Assignment1 Point.java
+Title:              Assignment2 Point.java
 Course:             SENG2200
 Author:             Juyong Kim
 Student No:         c3244203
-Date:               21/03/2019
+Date:               21/04/2019
 Description:        Creates a point
 */
+//libraries
 import java.lang.Math;
 public class Point
 {
@@ -58,4 +59,5 @@ public class Point
 
         return coordinate;
     }
-}
+    
+}//end of point class

@@ -1,11 +1,11 @@
 
 /*
-Title:              Assignment1 Polygon.java
+Title:              Assignment2 SortedList.java
 Course:             SENG2200
 Author:             Juyong Kim
 Student No:         c3244203
-Date:               21/03/2019
-Description:        Creates a Node 
+Date:               21/04/2019
+Description:        Creates a creates a sorted list 
 */
 import java.util.*;
 import java.lang.*;
@@ -14,7 +14,7 @@ public class SortedList<T extends PlanarShape> extends LinkedList<T>
 {
     private Node<T> current = sentinel;
 
-    //ftes seng2200 implementation
+    //inserts nodes and orders the correctly
     public void insertInOrder(PlanarShape shape)
     {
         current = sentinel;
@@ -33,10 +33,11 @@ public class SortedList<T extends PlanarShape> extends LinkedList<T>
         else
         {
             //System.out.println("in else statement");
+
             //but if its just bigger add to the end
             if(sentinel.getPrevious().getData().compare(shape)==false)
             {
-                System.out.println("value appended "+ shape.toString());
+                //System.out.println("value appended "+ shape.toString());
                 this.append(shape);
 
             }
@@ -51,13 +52,12 @@ public class SortedList<T extends PlanarShape> extends LinkedList<T>
                     //System.out.println("this is current"+current.getData().toString());
                     //System.out.println("this is shape"+shape.toString());
     
-                    //if next from current is bigger than shape
-                    //insert between current and getnext`
+                    //if next from current is bigger than shape insert between current and getnext
                     if(temp.compare(shape)==true)
                     {
-                        System.out.println("entered if statement within while!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                        System.out.println("added "+shape.toString());
-                        System.out.println("before "+current.getData().toString()+"\n");
+                        //System.out.println("entered if statement within while!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        //System.out.println("added "+shape.toString());
+                        //System.out.println("before "+current.getData().toString()+"\n");
 
                         shapeNode.setNext(current);
                         shapeNode.setPrevious(current.getPrevious());
@@ -74,35 +74,8 @@ public class SortedList<T extends PlanarShape> extends LinkedList<T>
 
         }
 
+        //up the size of the list, doesn't have any uses now but may in the future
         size++;
-    }
-}
-//else
-//{
-//    //System.out.println(current.getData().toString());
-//    //move to the first node
-//    current = current.getNext();
-//    System.out.println(current.getData().toString());
-//
-//    System.out.println("size is "+size);
-//
-//    for(int i = 0; i <= size; i++)
-//    {
-//        //shape area is smaller than the next shape in the list, add
-//        if(current.getData().compare(shape)==false)
-//        {
-//            Node<T> temp2 = new Node(current);
-//
-//            shapeNode.setNext(current.getNext());
-//            shapeNode.setPrevious(current);
-//
-//            current.getNext().setPrevious(shapeNode);
-//            current.setNext(shapeNode);
-//            System.out.println("size is "+size);
-//
-//            System.out.println("in else statement");
-//        }
-//        current = current.getNext();
-//    }
-//
-//}
+        
+    }//end of insertInOrder
+}//end of class

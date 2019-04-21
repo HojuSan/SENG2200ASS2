@@ -1,20 +1,23 @@
 /*
-Title:              Assignment1 PA2.java
+Title:              Assignment2 PlanarShape.java
 Course:             SENG2200
 Author:             Juyong Kim
 Student No:         c3244203
-Date:               05/03/2019
-Description:        Main file, just prints the polygon lists, based off input and insertionsort
+Date:               21/04/2019
+Description:        Parent Class Planarshape is abstract
 
 */
 
 //abstract classes exist to be extended, they can not be instantiated
 public abstract class PlanarShape 
 {
+    //function that returns the output values to assignment specs
     public abstract String toString();
 
+    //returns the area of the shape
     public abstract double area();
 
+    //returns distance from a shapes closest point/centre to origin(0,0)
     public abstract double originDistance();
 
     // bigger or the same return true, if smaller return false
@@ -32,17 +35,11 @@ public abstract class PlanarShape
         // area is states as the same
         if (ratio <= 1.005 && ratio >= 0.995) 
         {
-            System.out.println("entered orgin distance comparison~~~~~~~~~~");
             // if the distance to origin is shorter, it is technically bigger
             if (this.originDistance() > poly.originDistance()) 
             {
                 return true;
             }
-            ////or distance is the same
-            //else if(this.originDistance() == poly.originDistance())
-            //{
-            //    return true;
-            //}
             // if bigger then it is smaller or distance is the same
             else
             {
@@ -61,9 +58,9 @@ public abstract class PlanarShape
 
         }
 
-
+        //if all else fails, give up, hehe
         return false;
 
 
     }
-}// end of PA1 class
+}// end of PlanarShape class

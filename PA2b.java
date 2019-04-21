@@ -1,11 +1,12 @@
 
 /*
-Title:              Assignment1 PA2.java
+Title:              Assignment2 PA2b.java
 Course:             SENG2200
 Author:             Juyong Kim
 Student No:         c3244203
-Date:               05/03/2019
-Description:        Main file, just prints the polygon lists, based off input and insertionsort
+Date:               21/04/2019
+Description:        Main file, prints shapes, based off input and sorted by area/originDistance,
+                    adds circles and semi circles
 */
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -46,9 +47,14 @@ public class PA2b
         System.out.println();
 
         //sorted by input
-        System.out.println("sorted by input\n");
+        System.out.println("SORTED BY INPUT\n");
         System.out.println(myPolyList.printList(myPolyList));
 
+        //make it look clean
+        System.out.println();
+        System.out.println();
+
+        //iterator, adds a planar shape one by one
         Iterator<PlanarShape> it = myPolyList.iterator();
 
         while (it.hasNext()) 
@@ -58,7 +64,7 @@ public class PA2b
         }
 
         //sorted list
-        System.out.println("sorted list\n");
+        System.out.println("SORTED BY AREA/ORIGIN DISTANCE\n");
         System.out.println(myPolyListOrdered.printList(myPolyListOrdered));
 
     }// end of Main
@@ -67,10 +73,13 @@ public class PA2b
     {
         String[] details = shapeData.split(" ");
         String id_char = details[0];
-        System.out.println("char is "+id_char);
+        //System.out.println("char is "+id_char);
 
+        //switch statement that decides what shape it is based off
+        //the initial character of the string
         switch(id_char)
         {
+            //Polygons
             case "P":
                 // num after P/ verticies
                 String verticies = details[1];
@@ -103,43 +112,57 @@ public class PA2b
                 poly.addPoint(pList[0]);
                 poly.calArea();
                 poly.calOriginDistance();
+                //creates a planar shape and appends it
                 PlanarShape shape = poly;
                 list.append(shape);
 
             break;
 
+            //Circles
             case "C":
+                //xy values
                 String xValue = details[1];
                 String yValue = details[2];
+                //radius
                 double radius = Double.parseDouble(details[3]);
 
                 Point centre = new Point(Double.parseDouble(xValue), Double.parseDouble(yValue));
+                //creates a circle
                 Circle circle = new Circle(centre,radius);
+                //creates a planar shape and appends it
                 PlanarShape planarCircle = circle;
                 list.append(planarCircle);
             break;
 
+            //SemiCircles
             case "S":
+                //xy values
                 double xValue1 = Double.parseDouble(details[1]);
                 double yValue1 = Double.parseDouble(details[2]);
                 double xValue2 = Double.parseDouble(details[3]);
                 double yValue2 = Double.parseDouble(details[4]);
 
+                //creating the centre
                 Point sCentre = new Point(xValue1,yValue1);
+                //the other point needed to create the radius
                 Point pVector = new Point(xValue2,yValue2);
+                //calculate the radius
                 double sRadius = Math.sqrt(Math.pow((xValue2-xValue1),2) + Math.pow((yValue2-yValue1),2));
-
+                //creates a semi circle
                 SemiCircle semiCircle = new SemiCircle(sCentre, pVector, sRadius);
+                //creates a planar shape and appends it
                 PlanarShape planarSM = semiCircle;
                 list.append(planarSM);
             break;
 
             default:
-                System.out.println("Woop");
+
+                //default print out for errors
+                System.out.println("Invalid shape Input");
 
             break;
 
         }
     }
 
-}// end of PA1 class
+}//class

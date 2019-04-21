@@ -1,9 +1,9 @@
 /*
-Title:              Assignment1 Polygon.java
+Title:              Assignment2 Node.java
 Course:             SENG2200
 Author:             Juyong Kim
 Student No:         c3244203
-Date:               21/03/2019
+Date:               21/04/2019
 Description:        Creates a Node 
 */
 public class Node<T>
@@ -56,4 +56,4 @@ public class Node<T>
         return previous;
     }
     
-}
+}// end of Node
