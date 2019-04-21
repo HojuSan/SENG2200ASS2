@@ -22,7 +22,7 @@ public abstract class PlanarShape
     {
         // determine ratio between the area of two polygons
         double ratio = this.area() / poly.area();
-
+    
         // if no area default same
         if (this.area() == 0 && poly.area() == 0) 
         {
@@ -33,31 +33,36 @@ public abstract class PlanarShape
         if (ratio <= 1.05 && ratio >= 0.95) 
         {
             // if the distance to origin is shorter, it is technically bigger
-            if (this.originDistance() < poly.originDistance()) 
+            if (this.originDistance() > poly.originDistance()) 
             {
                 return true;
             }
-            // if bigger then it is smaller
-            else if (this.originDistance() > poly.originDistance()) 
+            ////or distance is the same
+            //else if(this.originDistance() == poly.originDistance())
+            //{
+            //    return true;
+            //}
+            // if bigger then it is smaller or distance is the same
+            else
             {
                 return false;
             } 
-            else//for the cases that the distance is the same
-            {
-                return false;
-            }
         }
-
         // if the area is bigger return true
         if (this.area() > poly.area()) 
         {
             return true;
         }
-        else
+        else if(this.area() < poly.area())
         {
             // area is smaller
             return false;
 
         }
+
+
+        return false;
+
+
     }
 }// end of PA1 class

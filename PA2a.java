@@ -46,7 +46,7 @@ public class PA2a
         System.out.println();
 
         // tada the actual assignment
-        System.out.println(myPolyList.printList());
+        //System.out.println(myPolyList.printList());
 
         System.out.println("iterator testing");
 
@@ -64,7 +64,7 @@ public class PA2a
         }
 
         System.out.println("sorted list\n");
-        System.out.println(myPolyListOrdered.printList());
+        System.out.println(myPolyListOrdered.printList(myPolyListOrdered));
 
     }// end of Main
 

@@ -6,6 +6,7 @@ Student No:         c3244203
 Date:               21/03/2019
 Description:        Creates a Polygon, implements an interface as well 
 */
+import java.lang.Math;
 public class Polygon extends PlanarShape 
 {
     //variables
@@ -62,6 +63,7 @@ public class Polygon extends PlanarShape
             area += (poly[i].getX()*poly[i+1].getY())-(poly[i].getY()*poly[i+1].getX());
         }
 
+        area = Math.abs(area);
         //half the total calculation
         area = area/2;
 
