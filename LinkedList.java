@@ -91,6 +91,7 @@ public class LinkedList<T extends PlanarShape> implements Iterable<T>
     }
 
     //iterator function
+    @SuppressWarnings("unchecked")
     public Iterator<T> iterator() 
     {
         return new myLinkedListIterator();
