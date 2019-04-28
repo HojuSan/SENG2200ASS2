@@ -13,6 +13,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 import java.lang.*;
+//import java.io.BufferedReader;
+//import java.io.FileReader;
 
 public class PA2b 
 {
@@ -21,6 +23,9 @@ public class PA2b
         // variables
         String dataFile = args[0];
         File file = new File(dataFile);
+        StringBuilder sb = new StringBuilder();
+        int nextChar = 0;
+        String strInp;
 
         LinkedList myPolyList = new LinkedList();
         SortedList myPolyListOrdered = new SortedList();
@@ -34,10 +39,67 @@ public class PA2b
             {
                 //saves the shape data into line
                 String line = scanner.nextLine();
-
-                //call shapeFactory
-                shapeFactory(myPolyList, line);                
+                sb.append(line.toUpperCase());
+                //sb.append(("\n"));             
             }
+
+            //String that has all the data in its exact format
+            String inputStr = sb.toString().trim();
+            inputStr.replaceAll("\\s+","");
+            //System.out.println(inputStr);
+
+            int inputLength = inputStr.length();
+            //System.out.println("inputlength is: "+inputLength);
+            int curPos = 0;
+            StringBuilder shapeSb = new StringBuilder();
+            char ch;
+            int chCount = 0;            
+      
+            // Process the input, ueses a cursor to dictait its location
+            while (curPos < inputLength)
+            {
+                if (Character.isLetter(inputStr.charAt(curPos)))
+                {
+                    //System.out.println("Entered if statement, curPos is at: "+curPos);
+                    // Shape mode. Append letter delimiter to string builder
+                    ch = inputStr.charAt(curPos);
+                    shapeSb.append(ch);
+                    curPos++;
+
+                    // Get input data of the detected shape
+                    while (curPos < inputLength)
+                    {
+                        ch = inputStr.charAt(curPos);
+                        // stop traversing when another letter is encountered
+                        if (Character.isLetter(ch))
+                            break;
+                        else
+                        {
+                            // increase character count
+                            // append character to string builder
+                            // replace newlines with spaces
+                            if (ch == '\n')
+                                ch = ' ';
+                            chCount++;
+                            shapeSb.append(ch);
+                        }
+                        curPos++;
+                    }
+
+                    //System.out.println("shape factory input string will be: "+shapeSb.toString());
+                    // Use shapeFactory to create Polygons
+                    shapeFactory(myPolyList,shapeSb.toString().trim());
+                    // Clear the collated string. +1 chCount because the range 0 to max, doesn't include max?
+                    shapeSb.delete(0, chCount + 1);
+                    chCount = 0;
+                }
+                else
+                {
+                    // move curPos if the character is not a letter
+                    curPos++;
+                }
+            }            
+
         } // end of try
         catch (FileNotFoundException e) 
         {
